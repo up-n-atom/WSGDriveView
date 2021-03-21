@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('stylesheet'); ?>
+    <?!= include('javascript'); ?>
+  </head>
+  <body onLoad="document.getElementsByClassName('tab-link')[0].click()">
+    <ul>
+      <li><button class="tab-link" onclick="showTab('WonderSwan', this)">WonderSwan</button></li>
+      <li><button class="tab-link" onclick="showTab('WonderSwanColor', this)">WonderSwan Color</button></li>
+      <li><button class="tab-link" onclick="showTab('SwanCrystal', this)">SwanCrystal</button></li>
+      <li><button class="tab-link" onclick="showTab('NaviGet400Million', this)">NAVI GET 4?</button></li>
+    </ul>
+    <div class="tab" id="WonderSwan">
+    </div>
+    <div class="tab" id="WonderSwanColor">
+    </div>
+    <div class="tab" id="SwanCrystal">
+    </div>
+    <div class="tab" id="NaviGet400Million">
+    </div>
+    <div id="spinner"></div>
+  </body>
+</html>

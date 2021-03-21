@@ -1,0 +1,94 @@
+<script type="text/javascript">
+  function run(func) {
+    const args = Array.prototype.slice.call(arguments).slice(1);
+    
+    return new Promise((resolve, reject) => {
+      document.getElementById("spinner").style.display = "block";
+      google.script.run.withSuccessHandler(res => {
+        resolve(res);
+        document.getElementById("spinner").style.display = "none";
+      }).withFailureHandler(err => {
+        document.getElementById("spinner").style.display = "none";
+        reject(err);
+      })[func].apply(this , args);
+    });
+  }
+  
+  function updateEepromListing(data) {
+    if (!Array.isArray(data) || data.length < 11) return;
+    
+    const fid = data.shift();
+    
+    var el = document.getElementById(fid);
+    
+    if (!el) return;
+    
+    el.parentElement.classList.add('flasher');
+    
+    while ((el = el.nextElementSibling) && data.length) {
+      while (el.firstChild)
+        el.removeChild(e.firstChild);
+      
+      const r = data.shift();
+      
+      if (data.length == 6/*r.startsWith('SWJ-')*/) {
+        var a = document.createElement('a');
+        
+        a.setAttribute('href', new String("https://www.google.com/search?q=" + r));
+        a.setAttribute('target', '_blank');
+        a.appendChild(document.createTextNode(r));
+        
+        el.appendChild(a);
+      } else
+        el.innerText = r;
+    }
+  }
+  
+  function insertTabContent(tab, content) {
+    tab.removeChild(tab.childNodes[0]);
+    tab.insertAdjacentHTML('afterbegin', content);
+    
+    Array.prototype.reduce.call(tab.getElementsByClassName('eeprom'), (p, el) => {
+      return p.then(res => {
+        updateEepromListing(res);
+        return run('parseWsEepromFileByFileId', el.id);
+      }).catch(err => {
+        throw err;
+      });
+    }, Promise.resolve()).then(res => {
+      updateEepromListing(res);
+      tab.classList.remove('tab-loading');
+      tab.classList.add('tab-loaded');
+    }).catch(err => {
+      tab.classList.remove('tab-loading');
+      alert(err);
+    });
+  }
+  
+  function showTab(tabId, tabLink) {
+    if (tabLink.classList.contains('active-tab')) return;
+    
+    Array.prototype.forEach.call(document.getElementsByClassName('tab-link'), el => {
+      el.classList.remove('active-tab');
+    });
+    
+    tabLink.classList.add('active-tab');
+    
+    Array.prototype.forEach.call(document.getElementsByClassName('tab'), el => {
+      if (el.id == tabId) {
+        el.style.display = 'block';
+          
+        if (!el.classList.contains('tab-loaded') && !el.classList.contains('tab-loading')) {
+          el.classList.add('tab-loading');
+            
+          run('listEepromFiles', tabId).then(res => {
+            insertTabContent(el, res);
+          }).catch(err => {
+            el.classList.remove('tab-loading');
+          });
+        }
+      } else
+        el.style.display = 'none';
+    });
+  }
+</script>

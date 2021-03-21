@@ -1,0 +1,75 @@
+<?
+  var colspan = name.toLowerCase() == 'WonderSwan' ? 12 : 14;
+?>
+<table cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th colspan="<?!= colspan ?>"></th>
+    </tr>
+    <tr>
+      <th rowspan="2" style="vertical-align: top;">EEPROM Dump</th>
+      <th colspan="4">Personal Info</th>
+      <th colspan="3">Cartridge Info</th>
+      <th colspan="<?!= colspan - 8 ?>">Console Info</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th>Date of Birth</th>
+      <th>Gender</th>
+      <th>Blood Type</th>
+      <th>Publisher ID</th>
+      <th>Game ID</th>
+      <th>Cart ID</th>
+      <th>Swan ID</th>
+      <th>Save Count</th>
+      <th>Cart Count</th>
+      <th>Boot Count</th>
+<?
+    if (name.toLowerCase() != 'WonderSwan') {
+?>
+      <th>Volume Level</th>
+      <th>Contrast Level</th>
+<?
+    } /* if */
+?>
+    </tr>
+    <tr>
+      <th colspan="<?!= colspan ?>"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="<?!= colspan ?>"></th>
+    </tr>
+<?
+  while (data.hasNext()) {
+    var file = data.next();
+?>
+    <tr>
+      <td id="<?= file.getId() ?>" class="eeprom">
+        <a href="<?= file.getUrl() ?>" target="_blank"><?= file.getName() ?></a>
+      </td>
+<?
+    for (var i = 0; i < (colspan - 1); ++i) {
+?>
+      <td></td>
+<?
+    } /* for */
+?>
+    </tr>
+<? 
+  } /* while */
+?>
+    <tr>
+      <td colspan="<?!= colspan ?>"></th>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="<?!= colspan ?>">&sup1; EEPROM files are direct 16-bit stream dumps and saved in their native &micro;Wire bit order, ie. LSB 0 or big-endian</td>
+    </tr>
+    <tr>
+      <td colspan="<?!= colspan ?>">&sup2; Publisher list sourced from <a href="http://daifukkat.su/docs/wsman/#cart_meta_publist">WSMan</a> by trap15</td>
+    </tr> 
+  </tfoot>
+</table>

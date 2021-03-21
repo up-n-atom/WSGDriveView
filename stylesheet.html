@@ -1,0 +1,171 @@
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #016ff9;
+}
+
+a:visited {
+  color: #348efe;
+}
+
+a:link:hover, a:visited:hover {
+  color: #9dd1ff;
+}
+
+body, html {
+  background-color: #eee;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  padding: 0.5em;
+  text-align: center;
+}
+
+table {
+  background-color: #fff;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  border-collapse:separate; 
+  border-spacing: 0;
+}
+
+td, th {
+  border-right: 1px solid #e1f1ff;
+  padding: 0.5em;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+td {
+  color: #333;
+}
+
+th {
+  background-color: #60a9ff;
+  color: #fff;
+}
+
+td:last-child, th:last-child {
+  border: none;
+}
+
+tr:first-child > *, tr:last-child > * {
+  height: 0.5em;
+  margin: 0;
+  padding: 0;
+}
+
+tfoot tr td {
+  font-size: small;
+  font-style: italic;
+}
+
+/*tbody tr:nth-child(even) {
+  background-color: #fafafafa;
+}*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+li {
+  display: inline;
+}
+
+li button {
+  background-color: #999;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-size: 1em;
+  outline: none;
+  padding: 1em;
+  text-decoration: none;
+}
+
+li button:hover {
+  background-color: #ccc;
+  color: #666;
+}
+
+li button.active-tab {
+  background-color: #fff;
+  color: #333;
+  cursor: default;
+}
+
+div.tab {
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.save-data {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.flasher {
+  animation: flash 0.5s linear 1;  
+}
+
+@keyframes flash {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#spinner {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  margin: -50px 0 0 -50px;
+  border-radius: 50%;
+  border-bottom: 15px solid #e12b38;
+  border-left: 15px solid #fcd02c;
+  border-right: 15px solid #3eb650;
+  border-top: 15px solid #60a9ff;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.working {
+  background-color: green;
+}
+
+</style>
