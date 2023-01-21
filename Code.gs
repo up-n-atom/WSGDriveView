@@ -164,7 +164,7 @@ function parseWsEepromFile(file) {
     'SHL', /* Shall Luck */
     'SQR', /* Squaresoft */
     '???',
-    '???',
+    'SCC',
     'TMC', /* Tom Create */
     '???',
     'NMC', /* Namco */
@@ -176,7 +176,7 @@ function parseWsEepromFile(file) {
     'WIZ', /* Wiz */
     '???',
     'TAN', /* Tanita */
-    'CAP'  /* Capcom */
+    'CPC'  /* Capcom */
   ];
   
   const gender = [
