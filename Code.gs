@@ -135,7 +135,7 @@ function parseWsEepromFile(file) {
     'CCJ', /* Coconuts Japan */
     'SUM', /* Sammy */
     'SUN', /* Sun Soft */
-    'PAW', /* */
+    'PAW', /* Mebius */
     'BPR', /* Banpresto */
     '???',
     'JLC', /* Jaleco */
